@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - TrackMyApply</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>TrackMyApply</h2>
+        <p style="text-align:center; margin-top:-10px; color:#666;">Login to your account</p>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div class="error" id="errorBox"></div>
+        </form>
+        <p class="link-text">Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+
+    <div class="credit-tag">by sufi_16</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

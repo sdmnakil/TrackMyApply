@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - TrackMyApply</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="requireAuth(); loadDashboardStats(); loadApplications();">
+    <div class="container wide">
+        <div class="top-bar">
+            <h2>TrackMyApply</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box"><h3 id="statTotal">0</h3><p>Total</p></div>
+            <div class="stat-box"><h3 id="statApplied">0</h3><p>Applied</p></div>
+            <div class="stat-box"><h3 id="statInterview">0</h3><p>Interview</p></div>
+            <div class="stat-box"><h3 id="statOffer">0</h3><p>Offer</p></div>
+            <div class="stat-box"><h3 id="statRejected">0</h3><p>Rejected</p></div>
+        </div>
+
+        <h3 id="formTitle">Add New Application</h3>
+        <form id="addForm" class="add-form" onsubmit="handleFormSubmit(event)">
+            <input type="text" id="companyName" placeholder="Company Name" required>
+            <input type="text" id="jobTitle" placeholder="Job Title" required>
+            <input type="text" id="jobType" placeholder="Job Type (Full Time/Part Time)" required>
+            <input type="text" id="location" placeholder="Location" required>
+
+            <input type="number" id="salaryMin" placeholder="Salary Min (optional)">
+            <input type="number" id="salaryMax" placeholder="Salary Max (optional)">
+
+            <input type="date" id="applicationDate" required>
+            <select id="status" required>
+                <option value="">-- Select Status --</option>
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Assessment">Assessment</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+
+            <input type="text" id="jobUrl" placeholder="Job URL (optional)">
+            <label style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="isSalaryNegotiable" style="width:auto;">
+                Salary Negotiable
+            </label>
+
+            <textarea id="notes" placeholder="Notes (optional)" class="full-width"></textarea>
+
+            <button type="submit" class="full-width" id="submitBtn">Add Application</button>
+            <button type="button" class="full-width" id="cancelEditBtn" onclick="cancelEdit()" style="display:none; background:#888;">Cancel Edit</button>
+            <div class="error full-width" id="addErrorBox"></div>
+        </form>
+
+        <hr style="margin: 30px 0;">
+
+        <h3>Search / Filter / Sort</h3>
+        <div class="add-form">
+            <input type="text" id="filterCompany" placeholder="Search by Company">
+            <select id="filterStatus">
+                <option value="">-- All Status --</option>
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Assessment">Assessment</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+
+            <select id="sortBy">
+                <option value="applicationDate">Sort by: Application Date</option>
+                <option value="companyName">Sort by: Company Name</option>
+                <option value="jobTitle">Sort by: Job Title</option>
+                <option value="salary">Sort by: Salary</option>
+            </select>
+
+            <select id="sortOrder">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+
+            <button type="button" onclick="applyFilters()">Search</button>
+            <button type="button" onclick="resetFilters()" style="background:#888;">Reset</button>
+        </div>
+
+        <h3>My Applications</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Job Title</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="jobTableBody"></tbody>
+        </table>
+
+        <div class="top-bar" id="paginationBar">
+            <button type="button" onclick="goToPreviousPage()">&laquo; Previous</button>
+            <span id="pageInfo">Page 1</span>
+            <button type="button" onclick="goToNextPage()">Next &raquo;</button>
+        </div>
+    </div>
+
+    <div class="credit-tag">by sufi_16</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
