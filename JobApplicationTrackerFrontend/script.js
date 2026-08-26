@@ -1,7 +1,12 @@
 // ==============================
 // CONFIG
 // ==============================
-const API_BASE_URL = "http://localhost:5189/api";
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+const API_BASE_URL = isLocal 
+    ? "http://localhost:5189/api" 
+    : "trackmyapply-production-39f4.up.railway.app"; // <-- railway net (keep the /api at the end!)
+
 
 // ==============================
 // STATE (current filters/pagination mone rakhar jonno)
