@@ -5,7 +5,7 @@ const isLocal = window.location.hostname === "localhost" || window.location.host
 
 const API_BASE_URL = isLocal 
     ? "http://localhost:5189/api" 
-    : "https://herokuapp.com"; 
+    : "https://railway.app"; // <-- Your clean direct Railway link
 
 
 
