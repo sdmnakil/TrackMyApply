@@ -5,7 +5,7 @@ const isLocal = window.location.hostname === "localhost" || window.location.host
 
 const API_BASE_URL = isLocal 
     ? "http://localhost:5189/api" 
-    : "trackmyapply-production-39f4.up.railway.app"; // <-- railway net (keep the /api at the end!)
+    : "https://trackmyapply-production-39f4.up.railway.app"; // <-- railway net (keep the /api at the end!)
 
 
 // ==============================
